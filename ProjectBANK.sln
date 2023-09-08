@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyOwnBank", "MyOwnBank\MyOwnBank.csproj", "{8B014457-3F22-470F-94BC-D08FD9EA475B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyOwnBank.Contracts", "MyOwnBank.Contracts\MyOwnBank.Contracts.csproj", "{7AF8E74C-7555-4C47-85D5-452BD10CBA2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B014457-3F22-470F-94BC-D08FD9EA475B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B014457-3F22-470F-94BC-D08FD9EA475B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B014457-3F22-470F-94BC-D08FD9EA475B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B014457-3F22-470F-94BC-D08FD9EA475B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF8E74C-7555-4C47-85D5-452BD10CBA2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF8E74C-7555-4C47-85D5-452BD10CBA2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF8E74C-7555-4C47-85D5-452BD10CBA2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF8E74C-7555-4C47-85D5-452BD10CBA2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

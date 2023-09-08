@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Welcome to our THEBESTBANKEVER";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+<div class="RegisterPanel">
+    <div class="PanelLogin">
+        <label>Enter login plz</label>
+        <input type="text" name="login" width="100px"/>
+    </div>
+    <div class="PanelPassword">
+        <label>Enter password plz</label>
+        <input type="password" name="password" width="100px"/>
+    </div>
+    <div class="PanelButton">
+        <button class="btn btn-primary" type="submit">Enter</button>
+        <button class="btn btn-secondary">Go Back</button>
+    </div>
+</div>
+</form>
+
+<a asp-controller="Bank" asp-action="CreateClientAccount">No an account?</a>
+
+<style>
+  .RegisterPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.PanelLogin, .PanelPassword {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  width: 150px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+input {
+  width: 200px;
+}
+
+.btn {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.PanelButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+</style>
