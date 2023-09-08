@@ -13,6 +13,9 @@
         <label>Enter password plz</label>
         <input type="password" name="password" width="100px"/>
     </div>
+
+    <span class="spanError">@ViewBag.NotFoundAccount</span>
+
     <div class="PanelButton">
         <button class="btn btn-primary" type="submit">Enter</button>
         <button class="btn btn-secondary">Go Back</button>
@@ -23,6 +26,9 @@
 <a asp-controller="Bank" asp-action="CreateClientAccount">No an account?</a>
 
 <style>
+  .spanError{
+    color: red;
+  }
   .RegisterPanel {
   display: flex;
   flex-direction: column;

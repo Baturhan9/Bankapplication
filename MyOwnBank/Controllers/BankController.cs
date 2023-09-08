@@ -23,7 +23,10 @@ public class BankController : Controller
     {
         var clientObj = _context.Clients.FirstOrDefault(c => c.Login == Login && c.Password == Password);
         if (clientObj == null)
+        {
+            ViewBag.NotFoundAccount = "Not right login or password";
             return View();
+        }
         else
         {
             return RedirectToAction("MainPage",clientObj);
@@ -33,7 +36,6 @@ public class BankController : Controller
     public IActionResult MainPage(Client clientObj)
     {
         return View(clientObj);
-         
     }
 
     public IActionResult CreateClientAccount()
