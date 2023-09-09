@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 
 namespace MyOwnBank.Controllers
 {
-    [Route("[controller]")]
     public class CardController : Controller
     {
 
@@ -17,6 +16,22 @@ namespace MyOwnBank.Controllers
         {
             return View();
         }
+        
 
+        public IActionResult CreateACard()
+        {
+            return View();
+        }
+        
+       public IActionResult ListOfCards()
+       {
+            return View();
+       } 
+
+       public IActionResult TransferMoney() 
+       {
+            return View();
+       }
+       
     }
 }

@@ -4,3 +4,27 @@
 
 
 <h1>@ViewData["Title"]</h1>
+
+
+<div class="ControllPanel">
+    <div class="TextAndButton">
+        <a class="btn" asp-controller="Card" asp-action="ListOfCards">List Of Cards</a>
+        <a class="btn" asp-controller="Card" asp-action="CreateACard">Create a card</a>
+        <a class="btn" asp-controller="Card" asp-action="TransferMoney">Transfer a Money</a> 
+    </div>
+</div>
+
+
+<style>
+    .ControllPanel{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .TextAndButton{
+        display: flex;
+        flex-direction: column;
+    }
+    
+</style>
