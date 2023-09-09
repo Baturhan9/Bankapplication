@@ -33,5 +33,11 @@ namespace MyOwnBank.Controllers
             return View();
        }
        
+       [HttpPost]
+       public IActionResult GenerateCard()
+       {
+            System.Console.WriteLine("LALALALLALALALALALHAAHAHAHAHHA");
+            return RedirectToAction("CreateACard");
+       }
     }
 }
