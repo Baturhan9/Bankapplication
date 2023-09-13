@@ -5,4 +5,7 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<a asp-controller="Card" asp-action="Index">Manager cards</a>
+<form method="post" asp-controller="Card" asp-action="Index">
+    <input type="number" hidden name="ClientId" value="@Model.Id"/> 
+    <button class="btn" type="submit" >Manager cards</button>
+</form>

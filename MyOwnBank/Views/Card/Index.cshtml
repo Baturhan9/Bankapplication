@@ -1,3 +1,4 @@
+@model int
 @{
     ViewData["Title"] = "Manage your cards";
 }
@@ -9,7 +10,12 @@
 <div class="ControllPanel">
     <div class="TextAndButton">
         <a class="btn" asp-controller="Card" asp-action="ListOfCards">List Of Cards</a>
-        <a class="btn" asp-controller="Card" asp-action="CreateACard">Create a card</a>
+
+        <form method="post" asp-controller="Card" asp-action="CreateACard">
+            <input hidden name="clientId" value="@Model"/>
+            <button type="submit" class="btn" >Create a card</button>
+        </form>
+        
         <a class="btn" asp-controller="Card" asp-action="TransferMoney">Transfer a Money</a> 
     </div>
 </div>
