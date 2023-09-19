@@ -1,3 +1,4 @@
+using System.Xml;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -44,11 +45,50 @@ namespace MyOwnBank.Controllers
             return View();
        } 
 
-       public IActionResult TransferMoney() 
+       public IActionResult TransferMoney(int clientId) 
        {
-            return View();
+            return View(clientId);
        }
 
+       [HttpPost]
+       public IActionResult TransferMoney(int clientId, int mainNums, int countMoney)
+       {
+            var clientCard = _context.BankCards.FirstOrDefault(x => x.ClientId == clientId);
+            if(clientCard == null)
+                return NotFound();
+            if(clientCard.Balance < countMoney)
+            {
+                ViewBag.CantTransfer = "Not enough money to transfer";
+                return View(clientId);
+            }
+
+            var anotherCard = _context.BankCards.FirstOrDefault( x=> x.MainNumbers == mainNums.ToString());
+            if(anotherCard == null)
+            {
+                ViewBag.NotExistCard = "This card not exists";
+                return View(clientId);
+            }
+
+            clientCard.Balance -= countMoney;
+            anotherCard.Balance += countMoney;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+       }
+
+        public IActionResult AddMoneyToMyCard(int clientId)
+        {
+            return View(clientId);
+        }
+        [HttpPost]
+        public IActionResult MethodAddMoneyToMyCard(int countMoney, int clientId)
+        {
+            var card = _context.BankCards.FirstOrDefault(x => x.ClientId == clientId);
+            if(card == null)
+                return NotFound();
+            card.Balance += countMoney;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
         [HttpPost]
         public IActionResult GenerateCard(int clientId)
         {

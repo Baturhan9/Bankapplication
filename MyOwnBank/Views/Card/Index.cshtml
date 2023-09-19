@@ -15,8 +15,16 @@
             <input hidden name="clientId" value="@Model"/>
             <button type="submit" class="btn" >Create a card</button>
         </form>
+         
+         <form method="post" asp-controller="Card" asp-action="TransferMoney">
+            <input hidden name="clientId" value="@Model"/>
+            <button type="submit" class="btn" >Transfer Money</button>
+        </form>
         
-        <a class="btn" asp-controller="Card" asp-action="TransferMoney">Transfer a Money</a> 
+        <form method="post" asp-controller="Card" asp-action="AddMoneyToMyCard">
+            <input hidden name="clientId" value="@Model"/>
+            <button type="submit" class="btn" >Add Money</button>
+        </form>
     </div>
 </div>
 

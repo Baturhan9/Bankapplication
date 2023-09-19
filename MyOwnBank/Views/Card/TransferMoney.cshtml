@@ -1,5 +1,48 @@
+@model int
 @{
     ViewData["Title"] = "Transfer money";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <input type="number" name="clientId" hidden value="@Model"/>
+    <div class="CenterBlock">
+        <div class="Enterblock">
+        <span class="Error">@ViewBag.NotExistCard</span>
+            <p>Enter nums of card</p>
+            <input type="number" name="mainNums"/>
+        </div>
+        <div class="Enterblock">
+        <span class="Error">@ViewBag.CantTransfer</span>
+            <p>Enter count of money</p>
+            <input type="number" name="countMoney"/>
+        </div>
+        <div class="Enterblock">
+            <button class="bigBtn" type="submit">To transfer</button>
+        </div>
+    </div>
+</form>
+
+<style>
+    .Error{
+        color:red;
+    }
+    .CenterBlock
+    {
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .Enterblock
+    {
+        margin: 50px;
+    }
+
+    .bigBtn{
+        width: 90%;
+        height: 90%;
+        font-size: 30pt;
+    }
+</style>
