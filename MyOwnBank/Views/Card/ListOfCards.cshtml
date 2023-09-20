@@ -1,5 +1,45 @@
+@model BankCard;
 @{
-    ViewData["Title"] = "List of cards";
+    ViewData["Title"] = "There is information about your card";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<div class="CardBlock">
+    <div class="BlockInformation">
+        <label>Balance: </label>
+        <input readonly value="@Model.Balance"/>
+    </div>
+    <div class="BlockInformation">
+        <label>Main number: </label>
+        <input readonly value="@Model.MainNumbers"/>
+    </div>
+    <div class="BlockInformation">
+        <label>Validation to: </label>
+        <input readonly value="@Model.ValidThru"/>
+    </div>
+</div>
+
+<form method="post" asp-action="Index">
+    <input hidden name="clientId" value="@Model.ClientId"/>
+    <button class="btn btn-outline-primary" type="submit">GoBack</button>
+</form>
+
+<style>
+    label{
+        width: 150px;
+    }
+    .CardBlock{
+        display: flex;
+        flex-direction: column;
+        border: 4mm ridge rgba(10,100,225,1);
+        border-radius: 50px;
+        width: 50%;
+        height: 30%;
+        background-color: blanchedalmond;
+    }
+    .BlockInformation{
+        display: flex;
+        margin: 10px;
+    }
+</style>

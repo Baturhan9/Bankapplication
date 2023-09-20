@@ -12,3 +12,7 @@
     <p></p>
     <button class="btn btn-primary" type="submit">Add Money</button>
 </form>
+<form method="post" asp-action="Index">
+    <input hidden name="clientId" value="@Model"/>
+    <button class="btn btn-outline-primary" type="submit">GoBack</button>
+</form>

@@ -40,9 +40,12 @@ namespace MyOwnBank.Controllers
             return View(clientId);
         }
         
-       public IActionResult ListOfCards()
+       public IActionResult ListOfCards(int clientId)
        {
-            return View();
+            var card = _context.BankCards.FirstOrDefault(c => c.ClientId == clientId);
+            if(card == null)
+                return NotFound();
+            return View(card);
        } 
 
        public IActionResult TransferMoney(int clientId) 
@@ -87,7 +90,7 @@ namespace MyOwnBank.Controllers
                 return NotFound();
             card.Balance += countMoney;
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index",clientId);
         }
         [HttpPost]
         public IActionResult GenerateCard(int clientId)

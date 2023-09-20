@@ -9,3 +9,8 @@
     <input hidden value="@Model" name="clientId"/>
     <button type="submit" class="btn btn-primary">Create a card</button>
 </form>
+
+<form method="post" asp-action="Index">
+    <input hidden name="clientId" value="@Model"/>
+    <button class="btn btn-outline-primary" type="submit">GoBack</button>
+</form>

@@ -9,8 +9,10 @@
 
 <div class="ControllPanel">
     <div class="TextAndButton">
-        <a class="btn" asp-controller="Card" asp-action="ListOfCards">List Of Cards</a>
-
+        <form method="post" asp-controller="Card" asp-action="ListOfCards">
+            <input hidden name="clientId" value="@Model"/>
+            <button type="submit" class="btn" >Info about your card</button>
+        </form>
         <form method="post" asp-controller="Card" asp-action="CreateACard">
             <input hidden name="clientId" value="@Model"/>
             <button type="submit" class="btn" >Create a card</button>
