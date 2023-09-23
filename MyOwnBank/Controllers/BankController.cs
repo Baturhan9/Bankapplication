@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using MyOwnBank.Contracts.ClientClasses;
 using MyOwnBank.Data;
@@ -42,9 +43,23 @@ public class BankController : Controller
     {
         return View();
     }
+    
     [HttpPost]
     public IActionResult CreateClientAccount(string Name, int Age, string Login, string Password)
     {
+        if(Name == "" || Age < 18 || Login == "" || Password == "")
+        {
+            if(Name == null)
+                ViewBag.EmptyName = "Name must be filled";
+            if(Age < 18)
+                ViewBag.NotEnoughOld = "You must be older than 18 ";
+            if(Login == null)
+                ViewBag.EmptyLogin = "You must enter Login ";
+            if(Password == null)
+                ViewBag.EmptyPassword = "You must enter Password";
+
+            return View();
+        }
         bool IsHasClient = _context.Clients.FirstOrDefault(c => c.Login == Login) != null; 
         if(IsHasClient)
         {

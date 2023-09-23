@@ -10,21 +10,25 @@
             <label>Enter your name</label>
             <input type="text" name="Name"/>
         </div>
+            <span class="Error"> @ViewBag.EmptyName</span>
         <div class="PanelInfo">
             <label>Enter your age</label>
             <input type="number" name="Age"/>
         </div>
+            <span class="Error">@ViewBag.NotEnoughOld</span>
         <div class="PanelInfo">
             <label>Enter your login</label>
             <input type="text" name="Login"/>
         </div>
+            <span class="Error">@ViewBag.EmptyLogin</span>
         
-        <span class="SpanErrorLogin">@ViewBag.ErrorSameClientLogin</span>
+        <span class="Error">@ViewBag.ErrorSameClientLogin</span>
 
         <div class="PanelInfo">
             <label>Enter your password</label>
             <input type="text" name="Password"/>
         </div>
+            <span class="Error">@ViewBag.EmptyPassword</span>
         <div class="PanelButtons">
             <button class="btn btn-primary" type="submit">Registration</button>
             <button class="btn btn-secondary" asp-controller="Bank" asp-action="Index">Go Back</button>
@@ -34,7 +38,11 @@
 
 
 <style>
-.SpanErrorLogin{
+label
+{
+  width: 200px;
+}
+.Error{
     color: red;
 }
 .PanelRegistration {
@@ -47,7 +55,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 label {

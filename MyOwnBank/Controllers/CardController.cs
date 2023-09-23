@@ -22,6 +22,10 @@ namespace MyOwnBank.Controllers
             _context = context;
         }
 
+        public IActionResult PageNotCard()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
@@ -37,14 +41,14 @@ namespace MyOwnBank.Controllers
 
         public IActionResult CreateACard(int clientId)
         {
-            return View(clientId);
+                return View(clientId);
         }
         
        public IActionResult ListOfCards(int clientId)
        {
             var card = _context.BankCards.FirstOrDefault(c => c.ClientId == clientId);
             if(card == null)
-                return NotFound();
+                return RedirectToAction("PageNotCard");
             return View(card);
        } 
 
@@ -58,7 +62,7 @@ namespace MyOwnBank.Controllers
        {
             var clientCard = _context.BankCards.FirstOrDefault(x => x.ClientId == clientId);
             if(clientCard == null)
-                return NotFound();
+                return RedirectToAction("PageNotCard");
             if(clientCard.Balance < countMoney)
             {
                 ViewBag.CantTransfer = "Not enough money to transfer";
@@ -87,7 +91,7 @@ namespace MyOwnBank.Controllers
         {
             var card = _context.BankCards.FirstOrDefault(x => x.ClientId == clientId);
             if(card == null)
-                return NotFound();
+                return RedirectToAction("PageNotCard");
             card.Balance += countMoney;
             _context.SaveChanges();
             return RedirectToAction("Index",clientId);
@@ -95,6 +99,10 @@ namespace MyOwnBank.Controllers
         [HttpPost]
         public IActionResult GenerateCard(int clientId)
         {
+            
+            var card = _context.BankCards.FirstOrDefault(c => c.ClientId == clientId);
+            if(card != null)
+                return RedirectToAction("Index");
             Random rand = new();
             BankCard cardObj = new BankCard();
             

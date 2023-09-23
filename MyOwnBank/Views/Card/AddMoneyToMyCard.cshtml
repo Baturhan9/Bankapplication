@@ -1,14 +1,18 @@
 @model int
 @{
     ViewData["Title"] = "Add money to my card";
+    ViewData["ToMuchMoney"] = "You can't add more than 100 000$";
+    
 }
 
 <h1>@ViewData["Title"]</h1>
 
 <form method="post" asp-action="MethodAddMoneyToMyCard">
     <p>How much Money do you want to add</p>
-    <input type="number" name="countMoney"/>
+    <input type="number" name="countMoney" min="1" max="100000"/>
     <input type="number" hidden value="@Model" name="clientId"/>
+    <p></p>
+    <span  class="text-secondary">@ViewData["ToMuchMoney"]</span> 
     <p></p>
     <button class="btn btn-primary" type="submit">Add Money</button>
 </form>
