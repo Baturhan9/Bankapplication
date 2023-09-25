@@ -22,17 +22,9 @@ namespace MyOwnBank.Controllers
             _context = context;
         }
 
-        public IActionResult PageNotCard()
-        {
-            return View();
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         
-        [HttpPost]
+
         public IActionResult Index(int ClientId)
         {
             return View(ClientId);
@@ -48,7 +40,7 @@ namespace MyOwnBank.Controllers
        {
             var card = _context.BankCards.FirstOrDefault(c => c.ClientId == clientId);
             if(card == null)
-                return RedirectToAction("PageNotCard");
+                return RedirectToAction("PageNotCard",new {clientId = clientId});
             return View(card);
        } 
 
@@ -62,7 +54,7 @@ namespace MyOwnBank.Controllers
        {
             var clientCard = _context.BankCards.FirstOrDefault(x => x.ClientId == clientId);
             if(clientCard == null)
-                return RedirectToAction("PageNotCard");
+                return RedirectToAction("PageNotCard", new {clientId = clientId});
             if(clientCard.Balance < countMoney)
             {
                 ViewBag.CantTransfer = "Not enough money to transfer";
@@ -79,7 +71,7 @@ namespace MyOwnBank.Controllers
             clientCard.Balance -= countMoney;
             anotherCard.Balance += countMoney;
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {clientId = clientId});
        }
 
         public IActionResult AddMoneyToMyCard(int clientId)
@@ -91,10 +83,10 @@ namespace MyOwnBank.Controllers
         {
             var card = _context.BankCards.FirstOrDefault(x => x.ClientId == clientId);
             if(card == null)
-                return RedirectToAction("PageNotCard");
+                return RedirectToAction("PageNotCard", new {clientId = clientId});
             card.Balance += countMoney;
             _context.SaveChanges();
-            return RedirectToAction("Index",clientId);
+            return RedirectToAction("Index",new {clientId = clientId});
         }
         [HttpPost]
         public IActionResult GenerateCard(int clientId)
@@ -102,7 +94,7 @@ namespace MyOwnBank.Controllers
             
             var card = _context.BankCards.FirstOrDefault(c => c.ClientId == clientId);
             if(card != null)
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new {clientId = clientId});
             Random rand = new();
             BankCard cardObj = new BankCard();
             
@@ -117,7 +109,12 @@ namespace MyOwnBank.Controllers
             _context.BankCards.Add(cardObj);
             _context.SaveChanges();            
             
-            return RedirectToAction("CreateACard");
+            return RedirectToAction("Index", new {clientId = clientId});
+        }
+        
+        public IActionResult PageNotCard(int clientId)
+        {
+            return View(clientId);
         }
     }
 }

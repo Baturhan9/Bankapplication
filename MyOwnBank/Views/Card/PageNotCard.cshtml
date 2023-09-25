@@ -1,8 +1,14 @@
+@model int;
+@{
+    
+}
 
-
-    <div>You haven't a card</div>
-    <p></p>
-    <a asp-action="CreateACard" class="text-info">You can create a card here</a>
-    <p></p>
-    <a asp-action="Index" class="btn btn-secondary">Go back</a>
+<div>You haven't a card</div>
+<p></p>
+<form method="post" asp-action="CreateACard">
+    <input  value="@Model" name="clientId"/>
+    <button type="submit" class="btn btn-secondary text-info">You can create a card here</button>
+</form>
+<p></p>
+<a asp-action="Index" class="btn btn-secondary" asp-route-clientId="@Model">Go back</a>
 
