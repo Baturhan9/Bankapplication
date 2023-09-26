@@ -3,7 +3,6 @@
 /MyOwnBank/obj
 /MyOwnBank/Properties
 
-/MyOwnBank.Contracts/bin
-/MyOwnBank.Contracts/obj
+/MyOwnBank.Contracts
 
 /obj

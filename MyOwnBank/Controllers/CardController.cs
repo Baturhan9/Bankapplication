@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyOwnBank.Data;
 using MyOwnBank.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace MyOwnBank.Controllers
 {
@@ -20,17 +21,13 @@ namespace MyOwnBank.Controllers
         public CardController(MyDbContext context)
         {
             _context = context;
-        }
-
-
-        
+        }        
 
         public IActionResult Index(int ClientId)
         {
             return View(ClientId);
         }
         
-
         public IActionResult CreateACard(int clientId)
         {
                 return View(clientId);
@@ -38,9 +35,9 @@ namespace MyOwnBank.Controllers
         
        public IActionResult ListOfCards(int clientId)
        {
-            var card = _context.BankCards.FirstOrDefault(c => c.ClientId == clientId);
+            var card = GetCard(clientId);
             if(card == null)
-                return RedirectToAction("PageNotCard",new {clientId = clientId});
+                return RedirectToAction("PageNotCard", new {clientId = clientId});
             return View(card);
        } 
 
@@ -52,7 +49,7 @@ namespace MyOwnBank.Controllers
        [HttpPost]
        public IActionResult TransferMoney(int clientId, int mainNums, int countMoney)
        {
-            var clientCard = _context.BankCards.FirstOrDefault(x => x.ClientId == clientId);
+            var clientCard = GetCard(clientId);
             if(clientCard == null)
                 return RedirectToAction("PageNotCard", new {clientId = clientId});
             if(clientCard.Balance < countMoney)
@@ -81,7 +78,7 @@ namespace MyOwnBank.Controllers
         [HttpPost]
         public IActionResult MethodAddMoneyToMyCard(int countMoney, int clientId)
         {
-            var card = _context.BankCards.FirstOrDefault(x => x.ClientId == clientId);
+            var card = GetCard(clientId);
             if(card == null)
                 return RedirectToAction("PageNotCard", new {clientId = clientId});
             card.Balance += countMoney;
@@ -92,7 +89,7 @@ namespace MyOwnBank.Controllers
         public IActionResult GenerateCard(int clientId)
         {
             
-            var card = _context.BankCards.FirstOrDefault(c => c.ClientId == clientId);
+            var card = GetCard(clientId);
             if(card != null)
                 return RedirectToAction("Index", new {clientId = clientId});
             Random rand = new();
@@ -116,5 +113,8 @@ namespace MyOwnBank.Controllers
         {
             return View(clientId);
         }
+
+        private BankCard? GetCard(int clientId) => _context.BankCards.FirstOrDefault(c => c.ClientId == clientId);
+         
     }
 }
